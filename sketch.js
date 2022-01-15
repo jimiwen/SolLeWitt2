@@ -21,11 +21,11 @@ print("X="+" "+v_PointX)
 print("Y="+" "+v_PointY)
 //print("v_pointlength=   "+ v_pointlength)
 
-for (horiz=0;horiz<1200;horiz+=random(150,180)){
-  for (verti=880;verti>10;verti-=random(130,160)){
-    drawSand(horiz+random(-100,100),verti+random(-100,100),10);
+  for (horiz=0;horiz<1200;horiz+=random(150,380)){
+    for (verti=800;verti>10;verti-=random(130,260)){
+      drawSand(horiz+random(-100,100),verti+random(-100,100),10);
+    }
   }
-}
 
 drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2)
 
@@ -40,7 +40,7 @@ drawDoor(v_PointX,v_PointY,ground,v_pointlength);
  // drawGround();
 	//  drawGround();
 // d(oo)raw(al)l a bit
-//save("SolleWitt")
+//save("Sand")
 
 
 //  drawBuildings();
@@ -147,7 +147,7 @@ const pointhouse=[
 
   const pointroof=[
   	[xx-doorwidth+random(-3,-2), ground+height],
-    [xx, ground+height-100-random(30,70)],
+    [xx, ground+height-random(60,170)],
   	[xx+doorwidth+random(2,3),ground+height],
   ]
   //xx, ground+height/2, height
