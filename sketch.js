@@ -10,17 +10,22 @@ skin:'#f5dba4',
 body1:'#c5e6d5',
 body2:'#234031'
 };
+let k=0;
 const size = 1200;
 let  ground = 800 * 0.95;
 let rc;
+let textt='How about this for an analogy, I have preferred many things, with or without much apology, I am kinda fluent in what every ontology, you try to infer, such that any topology is always trivial, but at the same time I can cook each of them for real, so maybe I should refer you to a nearby library, and look, for a dictionary, there, though, there might be fewer answers than there are more questions, whether you find them on some screen or a hard copy book, is not unlike drinking a nice cup of coffee, well brewed. This short passage came about with the right amount of neurons buzzing in my head, but I needed to codify this message with the fingertips of my hand, and only then, can I tap on a button, which was given the name, send.'
+
 
 function setup() {
 //  randomSeed(1641480658028);
   const canvas = createCanvas(1200, 800);
   rc = rough.canvas(canvas.canvas);
-  background(colors.main);
-  noLoop();
-	ground= ground*random(0.9,0.95)
+  background(255);
+  //noLoop();
+  frameRate(4)
+	ground= ground*random(0.95,0.99)
+
 }
 
 function draw() {
@@ -61,9 +66,19 @@ drawDoor(v_PointX,v_PointY,ground,v_pointlength);
  // drawGround();
 	//  drawGround();
 // d(oo)raw(al)l a bit
-//save("VHS")
 
+print(textt)
+textSize(random(30,50))
+fill('0')
 
+text(textt,v_PointX-300,v_PointY+600-17*k,random(600,900),random(800,900))
+k=k+1;
+if (k==60){
+  textSize(random(20,25))
+  text(textt,v_PointX-300,v_PointY+600-17*k,random(600,900),random(800,900))
+  noLoop()
+}
+//save("text")
 //  drawBuildings();
 }
 
