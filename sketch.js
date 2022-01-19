@@ -32,11 +32,11 @@ print("X="+" "+v_PointX)
 print("Y="+" "+v_PointY)
 //print("v_pointlength=   "+ v_pointlength)
 
-  for (horiz=0;horiz<1200;horiz+=random(150,380)){
-    for (verti=800;verti>10;verti-=random(130,260)){
-      drawSand(horiz+random(-100,100),verti+random(-100,100),10);
-    }
-  }
+  // for (horiz=0;horiz<1200;horiz+=random(150,380)){
+  //   for (verti=800;verti>10;verti-=random(130,260)){
+  //     drawSand(horiz+random(-100,100),verti+random(-100,100),10);
+  //   }
+  // }
 
 drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2)
 
@@ -58,7 +58,7 @@ drawPeople(v_PointX+400,v_PointY,ground,v_pointlength);
  // drawGround();
 	//  drawGround();
 // d(oo)raw(al)l a bit
-save("xiaoxiao")
+//save("xiaoxiao")
 
 
 //  drawBuildings();
