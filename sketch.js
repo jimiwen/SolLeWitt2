@@ -18,7 +18,7 @@ function setup() {
 //  randomSeed(1641480658028);
   const canvas = createCanvas(1200, 800);
   rc = rough.canvas(canvas.canvas);
-  background(colors.bg);
+  background(colors.main);
   noLoop();
 	ground= ground*random(0.9,0.95)
 }
@@ -26,16 +26,16 @@ function setup() {
 function draw() {
 
 let v_PointY =   random(5,65)+80;
-	let v_PointX = 320+random(-100,120);
+	let v_PointX = 420+random(-100,120);
 
 print("X="+" "+v_PointX)
 print("Y="+" "+v_PointY)
 
-  for (horiz=0;horiz<1200;horiz+=random(150,180)){
-    for (verti=800;verti>10;verti-=random(130,160)){
-      drawSand(horiz+random(-100,100),verti+random(-100,100),10);
-    }
-  }
+  // for (horiz=0;horiz<1200;horiz+=random(150,180)){
+  //   for (verti=800;verti>10;verti-=random(130,160)){
+  //     drawSand(horiz+random(-100,100),verti+random(-100,100),10);
+  //   }
+  // }
 
 //drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2)
 
@@ -61,7 +61,7 @@ drawDoor(v_PointX,v_PointY,ground,v_pointlength);
  // drawGround();
 	//  drawGround();
 // d(oo)raw(al)l a bit
-//save("cookman")
+//save("VHS")
 
 
 //  drawBuildings();
@@ -327,8 +327,8 @@ function drawDoor(xx,yy,ground,v_pointlength) {
 	// let x=300;
 	// let y=300;
 
-height=v_pointlength*random(0.05,0.1)*(yy-ground);
-let doorwidth=36*v_pointlength
+height=v_pointlength*0.2*(yy-ground);
+let doorwidth=86*v_pointlength
 const pointhouse=[
 	[xx-doorwidth+random(-0,0), ground+height],
   [xx-doorwidth+random(-0,0), ground],
@@ -337,41 +337,158 @@ const pointhouse=[
 ]
 //xx, ground+height/2, height
   rc.polygon(pointhouse, {
-    fill: colors.main,
+    fill: colors.bg,
     fillStyle: random(["cross-hatch"]),
-    fillWeight: random(0,2)/v_pointlength,
+    fillWeight: random(2,3)/v_pointlength,
     hachureAngle: random(90,93),
     stroke: "transparent",
   });
 
-  const pointroof=[
-  	[xx-doorwidth+random(-3,-2), ground+height],
-    [xx, ground+height-random(60,170)],
-  	[xx+doorwidth+random(2,3),ground+height],
-  ]
-  //xx, ground+height/2, height
-    rc.polygon(pointroof, {
-      fill: colors.roof,
-      fillStyle: random(["hachure"]),
-      fillWeight: random(3,6)/v_pointlength,
-      hachureAngle: random(190,193),
-      stroke: "transparent",
-    });
+
 const doorshift= doorwidth*int(random(10,30))/60+random(10,35);
     const pointdoor=[
-    	[xx-doorshift, ground],
-      [xx-doorshift, ground+height/(random(2,3))],
-    	[xx, ground+height/(random(2,3))],
-    	[xx, ground]
+    	[xx-doorwidth+random(-3,-2), ground],
+      [xx-doorwidth+random(-3,-2), ground+height],
+    	[xx, ground],
+    	[xx,ground+height]
     ]
     //xx, ground+height/2, height
       rc.polygon(pointdoor, {
         fill: colors.bg,
         fillStyle: random(["cross-hatch"]),
-        fillWeight: random(3,5)/v_pointlength,
+        fillWeight: random(0.5,1)/v_pointlength,
         hachureAngle: random(90,93),
         stroke: "transparent",
       });
+
+      const pointdoor2=[
+      	[xx+doorwidth+random(-3,-2), ground],
+        [xx+doorwidth+random(-3,-2), ground+height],
+      	[xx, ground],
+      	[xx,ground+height]
+      ]
+      //xx, ground+height/2, height
+        rc.polygon(pointdoor2, {
+          fill: colors.bg,
+          fillStyle: random(["cross-hatch"]),
+          fillWeight: random(0.5,1)/v_pointlength,
+          hachureAngle: random(90,93),
+          stroke: "transparent",
+        });
+
+        rc.circle(xx+doorwidth/2,ground+height/2,doorwidth*0.9, {
+          fill: colors.main,
+          fillStyle: random(["cross-hatch"]),
+          fillWeight: random(3,5)/v_pointlength,
+          hachureAngle: random(90,93),
+          stroke: "transparent",
+        });
+let tapesize= random(0,1);
+//infinite tape
+        rc.circle(xx+doorwidth/2,ground+height/2,doorwidth*(1-tapesize+0.1), {
+          fill: colors.bg,
+          fillStyle: random(["cross-hatch"]),
+          fillWeight: random(3,5)/v_pointlength,
+          hachureAngle: random(90,93),
+          stroke: "transparent",
+        });
+
+        const tapepoint=[
+        	[xx+doorwidth/2+doorwidth*(1-tapesize+0.1)/2, ground+height/2],
+          [xx+doorwidth/2+doorwidth*(1-tapesize+0.1)/2, ground+height/1.8],
+
+        	[xx+doorwidth/2+doorwidth/6,ground+height]
+        ]
+        //xx, ground+height/2, height
+          rc.polygon(tapepoint, {
+            fill: colors.bg,
+            fillStyle: random(["cross-hatch"]),
+            fillWeight: random(5,8)/v_pointlength,
+            hachureAngle: random(90,93),
+            stroke: "transparent",
+          });
+
+        rc.circle(xx-doorwidth/2,ground+height/2,doorwidth*0.9, {
+          fill: colors.main,
+          fillStyle: random(["cross-hatch"]),
+          fillWeight: random(3,5)/v_pointlength,
+          hachureAngle: random(90,93),
+          stroke: "transparent",
+        });
+
+        rc.circle(xx-doorwidth/2,ground+height/2,doorwidth*(tapesize+0.1), {
+          fill: colors.bg,
+          fillStyle: random(["cross-hatch"]),
+          fillWeight: random(3,5)/v_pointlength,
+          hachureAngle: random(90,93),
+          stroke: "transparent",
+        });
+
+        const tapepoint2=[
+          [xx-doorwidth/2-doorwidth*(tapesize+0.1)/2, ground+height/2],
+          [xx-doorwidth/2-doorwidth*(tapesize+0.1)/2, ground+height/1.8],
+
+          [xx-doorwidth/2-doorwidth/3,ground+height]
+        ]
+        //xx, ground+height/2, height
+          rc.polygon(tapepoint2, {
+            fill: colors.bg,
+            fillStyle: random(["cross-hatch"]),
+            fillWeight: random(5,8)/v_pointlength,
+            hachureAngle: random(90,93),
+            stroke: "transparent",
+          });
+
+        rc.circle(xx-doorwidth/2,ground+height/2,doorwidth*0.2, {
+          fill: colors.main,
+          fillStyle: random(["cross-hatch"]),
+          fillWeight: random(3,5)/v_pointlength,
+          hachureAngle: random(90,93),
+          stroke: "transparent",
+        });
+
+        rc.circle(xx+doorwidth/2,ground+height/2,doorwidth*0.2, {
+          fill: colors.main,
+          fillStyle: random(["cross-hatch"]),
+          fillWeight: random(3,5)/v_pointlength,
+          hachureAngle: random(90,93),
+          stroke: "transparent",
+        });
+
+
+
+        const pointroof=[
+          [xx-doorwidth+random(-3,-2), ground+height],
+          [xx, ground+height+random(60,170)],
+          [xx+doorwidth+random(2,3),ground+height],
+        ]
+        //xx, ground+height/2, height
+          rc.polygon(pointroof, {
+            fill: colors.main,
+            fillStyle: random(["hachure"]),
+            fillWeight: random(3,6)/v_pointlength,
+            hachureAngle: random(190,193),
+            stroke: "transparent",
+          });
+
+          //
+          // const pointdoor3=[
+          //   [xx+doorwidth*0.6, ground-random(110,130)],
+          //   [xx+doorwidth*0.6, ground+0.9*height+random(10,30)],
+          //   [xx-doorwidth*0.6, ground+0.9*height+random(10,30)],
+          //   [xx-doorwidth*0.6,ground-random(110,130)]
+          // ];
+          // //xx, ground+height/2, height
+          //   rc.polygon(pointdoor3, {
+          //     fill: colors.bg,
+          //     fillStyle: random(["cross-hatch"]),
+          //     fillWeight: random(2,4)/v_pointlength,
+          //     hachureAngle: random(90,93),
+          //     stroke: "transparent",
+          //   });
+
+          // text('hello')
+
 // const chimwidth= doorwidth*int(random(2,3))/60+random(10,35);
 //       const pointchimney=[
 //         [xx+chimwidth, ground-150-random(80,120)],
