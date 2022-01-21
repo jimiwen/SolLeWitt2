@@ -20,45 +20,57 @@ function setup() {
   rc = rough.canvas(canvas.canvas);
   background(colors.bg);
   noLoop();
-	ground= ground*random(0.78,0.95)
+	ground= ground*random(0.88,0.95)
 }
 
 function draw() {
 
 let v_PointY =   random(5,65)+80;
-	let v_PointX = 320+random(-100,220);
+	let v_PointX = 280+random(-100,220);
 
 print("X="+" "+v_PointX)
 print("Y="+" "+v_PointY)
 //print("v_pointlength=   "+ v_pointlength)
 
-  for (horiz=0;horiz<1200;horiz+=random(150,380)){
-    for (verti=800;verti>10;verti-=random(130,260)){
-      drawSand(horiz+random(-100,100),verti+random(-100,100),10);
-    }
-  }
+  // for (horiz=0;horiz<1200;horiz+=random(150,380)){
+  //   for (verti=800;verti>10;verti-=random(130,260)){
+  //     drawSand(horiz+random(-100,100),verti+random(-100,100),10);
+  //   }
+  // }
+// for (let k=0;k<800;k+=random(50,300)){
+drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 1)
+drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.7)
+drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.4)
+drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.25)
+drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.1)
+drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.08)
 
-drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2)
+// }
+for (let k=0;k<1199;k+=random(40,110)){
+
+  drawGrounding(v_PointX,v_PointY,ground,k+1);
+
+}
+
+drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
+drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
+drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
+drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
+
+//drawDoor(v_PointX,v_PointY,ground,v_pointlength);
+//drawDoor(v_PointX,v_PointY,ground,v_pointlength);
 
 
-drawGrounding(v_PointX,v_PointY,ground);
-
-
-drawDoor(v_PointX,v_PointY,ground,v_pointlength);
-drawDoor(v_PointX,v_PointY,ground,v_pointlength);
-drawDoor(v_PointX,v_PointY,ground,v_pointlength);
-
-
-drawPeople(v_PointX+200,v_PointY,ground,v_pointlength);
-drawPeople(v_PointX+200,v_PointY,ground,v_pointlength);
-drawPeople(v_PointX+400,v_PointY,ground,v_pointlength);
-drawPeople(v_PointX+400,v_PointY,ground,v_pointlength);
+//drawPeople(v_PointX+200,v_PointY,ground,v_pointlength);
+//drawPeople(v_PointX+200,v_PointY,ground,v_pointlength);
+//drawPeople(v_PointX+400,v_PointY,ground,v_pointlength);
+//drawPeople(v_PointX+400,v_PointY,ground,v_pointlength);
 
 
  // drawGround();
 	//  drawGround();
 // d(oo)raw(al)l a bit
-save("xiaoxiao")
+//save("seaofshapes")
 
 
 //  drawBuildings();
@@ -94,19 +106,19 @@ function drawSand(xx,yy){
       });
 }
 
-function drawGrounding(v_pointX,v_pointY,ground){
+function drawGrounding(v_pointX,v_pointY,ground,xPad){
 	 v_pointlength= random(2,6);
   //v_pointlength= 1
 
 	print("ground=  "+ground)
 	for (i=0;i<v_pointlength;i++)
-	drawGround(v_pointX,v_pointY,v_pointlength,ground)
+	drawGround(v_pointX,v_pointY,v_pointlength,ground,xPad)
 	return v_pointlength
 }
 
-function drawGround(vanish_pointX,vanish_pointY,v_pointlength,ground) {
-  const xPad = 5 +random(0,20);
-  const offset = 30+random(0,20);
+function drawGround(vanish_pointX,vanish_pointY,v_pointlength,ground,xPad) {
+  //const xPad = 5 +random(0,20);
+  const offset = 330+random(50,220);
 let height=v_pointlength*random(0.05,0.1)*(vanish_pointY-ground);
 //const vanish = 320+random(-100,220);
 //upper curve
@@ -120,17 +132,20 @@ let height=v_pointlength*random(0.05,0.1)*(vanish_pointY-ground);
 
 const pointseas= [
   [xPad,  offset],
-  [vanish_pointX+random(-20,20), offset+vanish_pointY],
+//  [vanish_pointX+random(-20,20), offset+vanish_pointY],
+[vanish_pointX+random(-20,20), offset],
   [size - xPad, offset],
-[size - xPad, ground+offset-350 ],
-  [vanish_pointX+random(-20,20) , ground-random(0,10)-350],
+[size - xPad, ground+offset-300 ],
+  [vanish_pointX+random(-20,120) , ground-random(0,10)-150],
+  [size - xPad, offset],
+    [vanish_pointX+random(-120,20) , ground-random(0,10)-150],
     [xPad, ground+offset-300 ],
 ];
 
 rc.polygon(pointseas, {
   fill: colors.sea,
   fillStyle: random(["hachure"]),
-  fillWeight: random(0,1.2)/v_pointlength,
+  fillWeight: random(0,0.6)/v_pointlength,
   hachureAngle: random(90,93),
   stroke: "transparent",
 });
@@ -239,55 +254,70 @@ const doorshift= doorwidth*int(random(10,30))/60+random(10,35);
 //         });
 }
 
-function drawDoor(xx,yy,ground,v_pointlength) {
+function drawBoat(xx,yy,ground,v_pointlength) {
 //  const d = size / 5;
   // const x = random(d + 50, width - d - 50);
   //  const y = random(d / 2, ground / 2 - d);
 	// let x=300;
 	// let y=300;
 
-height=v_pointlength*random(0.05,0.1)*(yy-ground);
+height=v_pointlength*random(0.05,0.07)*(yy-ground);
 let doorwidth=36*v_pointlength
 const pointhouse=[
 	[xx-doorwidth+random(-0,0), ground+height],
-  [xx-doorwidth+random(-0,0), ground],
-	[xx+doorwidth+random(-0,0), ground],
+  [xx-doorwidth/random(1.5,4)+random(-0,0), ground-random(40,80)],
+	[xx+doorwidth/random(1.5,4)+random(-0,0), ground-random(40,80)],
 	[xx+doorwidth+random(-0,0), ground+height]
 ]
 //xx, ground+height/2, height
   rc.polygon(pointhouse, {
     fill: colors.main,
-    fillStyle: random(["cross-hatch"]),
-    fillWeight: random(0,2)/v_pointlength,
+    fillStyle: random(["hachure"]),
+    fillWeight: random(1 ,2)/v_pointlength,
     hachureAngle: random(90,93),
     stroke: "transparent",
   });
-
+let sailLheight=random(3,30);
   const pointroof=[
-  	[xx-doorwidth+random(-3,-2), ground+height],
-    [xx, ground+height-random(60,170)],
-  	[xx+doorwidth+random(2,3),ground+height],
+  	[xx-doorwidth-random(-30,-20), ground+height-sailLheight],
+    [xx, ground+height-random(60,170)-sailLheight*2],
+  	[xx+random(12,31),ground+height-sailLheight],
   ]
   //xx, ground+height/2, height
     rc.polygon(pointroof, {
       fill: colors.roof,
       fillStyle: random(["hachure"]),
-      fillWeight: random(3,6)/v_pointlength,
+      fillWeight: random(1,2)/v_pointlength,
       hachureAngle: random(190,193),
       stroke: "transparent",
     });
+
+let sailRheight=random(2,30);
+    const pointroof2=[
+      [xx+random(-3,-2), ground+height-sailRheight],
+      [xx, ground+height-random(60,170)-sailRheight],
+      [xx+doorwidth+random(-20,-30),ground+height-sailRheight],
+    ]
+    //xx, ground+height/2, height
+      rc.polygon(pointroof2, {
+        fill: colors.roof,
+        fillStyle: random(["hachure"]),
+        fillWeight: random(1,2)/v_pointlength,
+        hachureAngle: random(90,93),
+        stroke: "transparent",
+      });
 const doorshift= doorwidth*int(random(10,30))/60+random(10,35);
     const pointdoor=[
-    	[xx-doorshift, ground],
-      [xx-doorshift, ground+height/(random(2,3))],
-    	[xx, ground+height/(random(2,3))],
-    	[xx, ground]
+    	[xx-doorshift/2, ground-random(50,60)],
+      [xx-doorshift/2, ground+height/(random(2,3))-random(50,60)],
+    	[xx, ground+height/(random(2,3))-random(50,60)],
+    	[xx, ground-random(50,60)]
     ]
     //xx, ground+height/2, height
       rc.polygon(pointdoor, {
         fill: colors.bg,
         fillStyle: random(["cross-hatch"]),
-        fillWeight: random(3,5)/v_pointlength,
+        fillWeight: random(0.5,1)/v_pointlength,
         hachureAngle: random(90,93),
         stroke: "transparent",
       });
@@ -308,14 +338,14 @@ const doorshift= doorwidth*int(random(10,30))/60+random(10,35);
 //         });
 }
 
-function drawDoorKnob(xx,yy,ground,v_pointlength) {
+function drawDoorKnob(xx,yy,ground,v_pointlength,gain) {
 height=v_pointlength*random(0.5,1)*(yy-ground);
 //let doorwidth=35*v_pointlength
 //xx, ground+height/2, height
-  rc.circle(xx+random(-20,20),ground+height/2,random(0.6,1.2)*height/v_pointlength, {
+  rc.circle(xx+random(-20,20),ground+height/2,0.5 *random(0.6,1.2)*height/(gain*v_pointlength), {
     fill: colors.doorknob,
     fillStyle: "dots",
-    fillWeight: random(0.5,2)/v_pointlength,
+    fillWeight: gain*random(0.1,0.2)/v_pointlength,
     stroke: "transparent",
   });
 }
