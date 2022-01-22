@@ -1,14 +1,14 @@
 const colors = {
   main: "#f1f1f1",
-  bg: "#23120b",
+  bg: "#02040a",
   doorknob: "#fdb827",
   sea: '#52c2eb',
-  sand:'#a16d37',
+  sand:'#a18360',
   roof:'#b03737',
   door:'#5ead80',
 skin:'#f5dba4',
 body1:'#c5e6d5',
-body2:'#234031'
+body2:'#70cfc4'
 };
 const size = 1200;
 let  ground = 800 * 0.95;
@@ -16,11 +16,12 @@ let rc;
 
 function setup() {
 //  randomSeed(1641480658028);
-  const canvas = createCanvas(1200, 800);
+  const canvas = createCanvas(800, 1200);
   rc = rough.canvas(canvas.canvas);
-  background(colors.bg);
+  background(colors.main);
   noLoop();
 	ground= ground*random(0.88,0.95)
+  waterfallTip= random(300,700)
 }
 
 function draw() {
@@ -38,24 +39,27 @@ print("Y="+" "+v_PointY)
   //   }
   // }
 // for (let k=0;k<800;k+=random(50,300)){
-drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 1)
-drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.7)
-drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.4)
-drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.25)
-drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.1)
-drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.08)
+//drawDoorKnob(1000-v_PointX,v_PointY+50,random(10,20),2, 1)
+// drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.7)
+// drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.4)
+// drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.25)
+// drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.1)
+// drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.08)
 
 // }
-for (let k=0;k<1199;k+=random(40,110)){
+// for (let k=0;k<1000;k+=random(40,110)){
+//
+//   drawMountain(v_PointX,v_PointY,ground-k-300,k+1);
+//
+// }
 
-  drawGrounding(v_PointX,v_PointY,ground,k+1);
+drawMountain(random(300,500),random(150,300));
 
-}
 
-drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
-drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
-drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
-drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
+// drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
+// drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
+// drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
+// drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
 
 //drawDoor(v_PointX,v_PointY,ground,v_pointlength);
 //drawDoor(v_PointX,v_PointY,ground,v_pointlength);
@@ -70,7 +74,7 @@ drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
  // drawGround();
 	//  drawGround();
 // d(oo)raw(al)l a bit
-//save("seaofshapes")
+//save("shanshui")
 
 
 //  drawBuildings();
@@ -106,51 +110,51 @@ function drawSand(xx,yy){
       });
 }
 
-function drawGrounding(v_pointX,v_pointY,ground,xPad){
-	 v_pointlength= random(2,6);
-  //v_pointlength= 1
-
-	print("ground=  "+ground)
-	for (i=0;i<v_pointlength;i++)
-	drawGround(v_pointX,v_pointY,v_pointlength,ground,xPad)
-	return v_pointlength
-}
-
-function drawGround(vanish_pointX,vanish_pointY,v_pointlength,ground,xPad) {
-  //const xPad = 5 +random(0,20);
-  const offset = 330+random(50,220);
-let height=v_pointlength*random(0.05,0.1)*(vanish_pointY-ground);
-//const vanish = 320+random(-100,220);
-//upper curve
- // let a= [xPad,  offset]
- // let b=  [vanish_pointX+random(-20,20), offset+vanish_pointY]
- // let c= [size - xPad, offset]
- // let d=[xPad, ground+offset ]
- // let e=	[vanish_pointX+random(-20,20) , ground-random(0,10)]
- // let f=	[size - xPad, ground+offset ]
- // let g=[vanish_pointX+random(-15,15), ground+height]
-
-const pointseas= [
-  [xPad,  offset],
-//  [vanish_pointX+random(-20,20), offset+vanish_pointY],
-[vanish_pointX+random(-20,20), offset],
-  [size - xPad, offset],
-[size - xPad, ground+offset-300 ],
-  [vanish_pointX+random(-20,120) , ground-random(0,10)-150],
-  [size - xPad, offset],
-    [vanish_pointX+random(-120,20) , ground-random(0,10)-150],
-    [xPad, ground+offset-300 ],
-];
-
-rc.polygon(pointseas, {
-  fill: colors.sea,
-  fillStyle: random(["hachure"]),
-  fillWeight: random(0,0.6)/v_pointlength,
-  hachureAngle: random(90,93),
-  stroke: "transparent",
-});
-
-}
+// function drawGrounding(v_pointX,v_pointY,ground,xPad){
+// 	 v_pointlength= random(2,6);
+//   //v_pointlength= 1
+//
+// 	print("ground=  "+ground)
+// 	for (i=0;i<v_pointlength;i++)
+// 	drawGround(v_pointX,v_pointY,v_pointlength,ground,xPad)
+// 	return v_pointlength
+// }
+//
+// function drawGround(vanish_pointX,vanish_pointY,v_pointlength,ground,xPad) {
+//   //const xPad = 5 +random(0,20);
+//   const offset = 330+random(50,220);
+// let height=v_pointlength*random(0.05,0.1)*(vanish_pointY-ground);
+// //const vanish = 320+random(-100,220);
+// //upper curve
+//  // let a= [xPad,  offset]
+//  // let b=  [vanish_pointX+random(-20,20), offset+vanish_pointY]
+//  // let c= [size - xPad, offset]
+//  // let d=[xPad, ground+offset ]
+//  // let e=	[vanish_pointX+random(-20,20) , ground-random(0,10)]
+//  // let f=	[size - xPad, ground+offset ]
+//  // let g=[vanish_pointX+random(-15,15), ground+height]
+//
+// const pointseas= [
+//   [xPad,  offset],
+// //  [vanish_pointX+random(-20,20), offset+vanish_pointY],
+// [vanish_pointX+random(-20,20), offset],
+//   [size - xPad, offset],
+// [size - xPad, ground+offset-300 ],
+//   [vanish_pointX+random(-20,120) , ground-random(0,10)-150],
+//   [size - xPad, offset],
+//     [vanish_pointX+random(-120,20) , ground-random(0,10)-150],
+//     [xPad, ground+offset-300 ],
+// ];
+//
+// rc.polygon(pointseas, {
+//   fill: colors.sea,
+//   fillStyle: random(["hachure"]),
+//   fillWeight: random(0,0.6)/v_pointlength,
+//   hachureAngle: random(90,93),
+//   stroke: "transparent",
+// });
+//
+// }
 
 function drawPeople(xx,yy,ground,v_pointlength) {
 //  const d = size / 5;
@@ -342,8 +346,8 @@ function drawDoorKnob(xx,yy,ground,v_pointlength,gain) {
 height=v_pointlength*random(0.5,1)*(yy-ground);
 //let doorwidth=35*v_pointlength
 //xx, ground+height/2, height
-  rc.circle(xx+random(-20,20),ground+height/2,0.5 *random(0.6,1.2)*height/(gain*v_pointlength), {
-    fill: colors.doorknob,
+  rc.circle(xx+random(-20,20),ground+height/2,0.5 *random(3,4)*height/(gain*v_pointlength), {
+    fill: colors.sand,
     fillStyle: "dots",
     fillWeight: gain*random(0.1,0.2)/v_pointlength,
     stroke: "transparent",
