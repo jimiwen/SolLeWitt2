@@ -13,71 +13,167 @@ body2:'#70cfc4'
 const size = 1200;
 let  ground = 800 * 0.95;
 let rc;
+let centerpoint
+let ppoint
 
 function setup() {
 //  randomSeed(1641480658028);
-  const canvas = createCanvas(800, 1200);
+  const canvas = createCanvas(1400, 1400);
   rc = rough.canvas(canvas.canvas);
   background(colors.main);
   noLoop();
 	ground= ground*random(0.88,0.95)
   waterfallTip= random(300,700)
+  centerpoint=[700,700]
+  ppoint =[random(400,1000),random(400,1000)]
 }
 
 function draw() {
-
-let v_PointY =   random(5,65)+80;
-	let v_PointX = 280+random(-100,220);
-
-print("X="+" "+v_PointX)
-print("Y="+" "+v_PointY)
-//print("v_pointlength=   "+ v_pointlength)
-
-  // for (horiz=0;horiz<1200;horiz+=random(150,380)){
-  //   for (verti=800;verti>10;verti-=random(130,260)){
-  //     drawSand(horiz+random(-100,100),verti+random(-100,100),10);
-  //   }
-  // }
-// for (let k=0;k<800;k+=random(50,300)){
-//drawDoorKnob(1000-v_PointX,v_PointY+50,random(10,20),2, 1)
-// drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.7)
-// drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.4)
-// drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.25)
-// drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.1)
-// drawDoorKnob(1200-v_PointX,v_PointY+100,random(10,30),2, 0.08)
-
-// }
-// for (let k=0;k<1000;k+=random(40,110)){
-//
-//   drawMountain(v_PointX,v_PointY,ground-k-300,k+1);
-//
-// }
-
-drawMountain(random(300,500),random(150,300));
+perspec(ppoint,1300,1300)
+noStroke()
+fill(colors.main)
+rect(0,450,1399,500)
+rect(450,0,500,1399)
+perspec(ppoint,400,1300)
+perspec(ppoint,1300,400)
+//rect(50,50,500,500)
+rect(450,450,500,500)
+perspec(ppoint,400,400)
 
 
-// drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
-// drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
-// drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
-// drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
-
-//drawDoor(v_PointX,v_PointY,ground,v_pointlength);
-//drawDoor(v_PointX,v_PointY,ground,v_pointlength);
 
 
-//drawPeople(v_PointX+200,v_PointY,ground,v_pointlength);
-//drawPeople(v_PointX+200,v_PointY,ground,v_pointlength);
-//drawPeople(v_PointX+400,v_PointY,ground,v_pointlength);
-//drawPeople(v_PointX+400,v_PointY,ground,v_pointlength);
+leftvert=[
+  [450,0],
+  [500,0],
+  [500,1399],
+  [450,1399]
+];
+
+rc.polygon(leftvert, {
+  fill: colors.main,
+  fillStyle: random(["hachure"]),
+  fillWeight: random(3 ,3),
+  hachureAngle: random(0,90),
+  stroke: "transparent",
+});
 
 
- // drawGround();
-	//  drawGround();
-// d(oo)raw(al)l a bit
-//save("shanshui")
+
+rightvert=[
+  [900,0],
+  [950,0],
+  [950,1399],
+  [900,1399]
+];
+
+rc.polygon(rightvert, {
+  fill: colors.main,
+  fillStyle: random(["hachure"]),
+  fillWeight: random(3 ,3),
+  hachureAngle: random(0,90),
+  stroke: "transparent",
+});
 
 
-//  drawBuildings();
+tophorizon=[
+  [0,450],
+  [0,500],
+  [1399,500],
+  [1399,450]
+];
+
+rc.polygon(tophorizon, {
+  fill: colors.main,
+  fillStyle: random(["hachure"]),
+  fillWeight: random(3 ,3),
+  hachureAngle: random(0,90),
+  stroke: "transparent",
+});
+
+bottomhorizon=[
+  [0,900],
+  [0,950],
+  [1399,950],
+  [1399,900]
+];
+
+rc.polygon(tophorizon, {
+  fill: colors.main,
+  fillStyle: random(["hachure"]),
+  fillWeight: random(3 ,3),
+  hachureAngle: random(0,90),
+  stroke: "transparent",
+});
+//rect(450,0,50,1399)
+//rect(900,0,50,1399)
+//rect(0,450,1399,50)
+rect(0,900,1399,50)
+
+//perspec(ppoint,1300,1300)
+
+//save('perspective')
+}
+
+function perspec(ppoint,width,height){
+
+  upperquad=[
+    [ppoint[0],ppoint[1]],
+    [700-width/2,700-height/2],
+    [700+width/2,700-height/2]
+  ];
+
+  rc.polygon(upperquad, {
+    fill: random([colors.bg,colors.bg]),
+    fillStyle: random(["hachure"]),
+    fillWeight: random(1 ,2),
+    hachureAngle: random(80,100),
+    stroke: "transparent",
+  });
+
+  leftquad=[
+    [ppoint[0],ppoint[1]],
+    [700-width/2,700-height/2],
+    [700-width/2,700+height/2]
+  ];
+
+  rc.polygon(leftquad, {
+    fill: random([colors.bg,colors.bg]),
+    fillStyle: random(["hachure"]),
+    fillWeight: random(1 ,2),
+    hachureAngle: random(-10,10),
+    stroke: "transparent",
+  });
+
+  lowerquad=[
+    [ppoint[0],ppoint[1]],
+    [700+width/2,700+height/2],
+    [700-width/2,700+height/2]
+  ];
+
+  rc.polygon(lowerquad, {
+    fill: random([colors.roof,colors.roof]),
+    fillStyle: random(["hachure"]),
+    fillWeight: random(2 ,3),
+    hachureAngle: random(80,100),
+    stroke: "transparent",
+  });
+
+  rightquad=[
+    [ppoint[0],ppoint[1]],
+    [700+width/2,700+height/2],
+    [700+width/2,700-height/2]
+  ];
+
+  rc.polygon(rightquad, {
+    fill: random([colors.bg,colors.bg]),
+    fillStyle: random(["hachure"]),
+    fillWeight: random(1 ,2),
+    hachureAngle: random(-10,10),
+    stroke: "transparent",
+  });
+
+
 }
 
 function drawSand(xx,yy){
