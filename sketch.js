@@ -1,5 +1,6 @@
 const colors = {
-  main: "#f1f1f1",
+  //main: "#f1f1f1",
+  main: '#514059',
   bg: "#02040a",
   doorknob: "#fdb827",
   sea: '#52c2eb',
@@ -16,99 +17,152 @@ let rc;
 let centerpoint
 let ppoint
 
+function preload(){
+  // img=loadImage('perspective29.png')
+  img=loadImage('combine26.png')
+}
+
 function setup() {
 //  randomSeed(1641480658028);
-  const canvas = createCanvas(1400, 1400);
+  const canvas = createCanvas(1600, 1600);
   rc = rough.canvas(canvas.canvas);
-  background(colors.main);
+  background(colors.sand);
   noLoop();
 	ground= ground*random(0.88,0.95)
   waterfallTip= random(300,700)
   centerpoint=[700,700]
   ppoint =[random(400,1000),random(400,1000)]
+
+  imageMode(CENTER);
+    angleMode(RADIANS)
 }
 
 function draw() {
-perspec(ppoint,1300,1300)
-noStroke()
-fill(colors.main)
-rect(0,450,1399,500)
-rect(450,0,500,1399)
-perspec(ppoint,400,1300)
-perspec(ppoint,1300,400)
-//rect(50,50,500,500)
-rect(450,450,500,500)
-perspec(ppoint,400,400)
 
 
+  for (k=0;k<8;k++){
+    for (p=0;p<8;p++){
+      push();
 
+  	// move the origin to the pivot point
+  	translate((k-1)*200+100,(p-1)*200+100);
 
-leftvert=[
-  [450,0],
-  [500,0],
-  [500,1399],
-  [450,1399]
-];
+  	// then pivot the grid
+    angle=(180+(180*(p+1)%360+90*(k+1))%360)%360;
+  	rotate(radians(angle));
+console.log(angle,k,p)
+  	// draw rect in black at the new origin
+  	image(img,200,200,200,200)
 
-rc.polygon(leftvert, {
-  fill: colors.main,
-  fillStyle: random(["hachure"]),
-  fillWeight: random(3 ,3),
-  hachureAngle: random(0,90),
-  stroke: "transparent",
-});
+  	//revert to original drawing state
+  	pop();
+    }
+  }
 
+  for (k=0;k<8;k++){
+    for (p=0;p<8;p++){
+      push();
 
+  	// move the origin to the pivot point
+  	translate((k-1)*200+100,(p-1)*200+100);
 
-rightvert=[
-  [900,0],
-  [950,0],
-  [950,1399],
-  [900,1399]
-];
+  	// then pivot the grid
+    angle=(0+(180*(p+1)%360+90*(k+1))%360)%360;
+  	rotate(radians(angle));
+console.log(angle,k,p)
+  	// draw rect in black at the new origin
+  	image(img,200,200,200,200)
 
-rc.polygon(rightvert, {
-  fill: colors.main,
-  fillStyle: random(["hachure"]),
-  fillWeight: random(3 ,3),
-  hachureAngle: random(0,90),
-  stroke: "transparent",
-});
+  	//revert to original drawing state
+  	pop();
+    }
+  }
+//save('carpet.png')
 
+//   image(img,0,0,200,200)
+// rotate(PI/2)
+//   image(img,200,0,200,200)
 
-tophorizon=[
-  [0,450],
-  [0,500],
-  [1399,500],
-  [1399,450]
-];
-
-rc.polygon(tophorizon, {
-  fill: colors.main,
-  fillStyle: random(["hachure"]),
-  fillWeight: random(3 ,3),
-  hachureAngle: random(0,90),
-  stroke: "transparent",
-});
-
-bottomhorizon=[
-  [0,900],
-  [0,950],
-  [1399,950],
-  [1399,900]
-];
-
-rc.polygon(tophorizon, {
-  fill: colors.main,
-  fillStyle: random(["hachure"]),
-  fillWeight: random(3 ,3),
-  hachureAngle: random(0,90),
-  stroke: "transparent",
-});
-//rect(450,0,50,1399)
-//rect(900,0,50,1399)
-//rect(0,450,1399,50)
-rect(0,900,1399,50)
+// perspec(ppoint,1300,1300)
+// noStroke()
+// fill(colors.main)
+// rect(0,450,1399,500)
+// rect(450,0,500,1399)
+// perspec(ppoint,400,1300)
+// perspec(ppoint,1300,400)
+// //rect(50,50,500,500)
+// rect(450,450,500,500)
+// perspec(ppoint,400,400)
+//
+//
+//
+//
+// leftvert=[
+//   [450,0],
+//   [500,0],
+//   [500,1399],
+//   [450,1399]
+// ];
+//
+// rc.polygon(leftvert, {
+//   fill: colors.main,
+//   fillStyle: random(["hachure"]),
+//   fillWeight: random(3 ,3),
+//   hachureAngle: random(0,90),
+//   stroke: "transparent",
+// });
+//
+//
+//
+// rightvert=[
+//   [900,0],
+//   [950,0],
+//   [950,1399],
+//   [900,1399]
+// ];
+//
+// rc.polygon(rightvert, {
+//   fill: colors.main,
+//   fillStyle: random(["hachure"]),
+//   fillWeight: random(3 ,3),
+//   hachureAngle: random(0,90),
+//   stroke: "transparent",
+// });
+//
+//
+// tophorizon=[
+//   [0,450],
+//   [0,500],
+//   [1399,500],
+//   [1399,450]
+// ];
+//
+// rc.polygon(tophorizon, {
+//   fill: colors.main,
+//   fillStyle: random(["hachure"]),
+//   fillWeight: random(3 ,3),
+//   hachureAngle: random(0,90),
+//   stroke: "transparent",
+// });
+//
+// bottomhorizon=[
+//   [0,900],
+//   [0,950],
+//   [1399,950],
+//   [1399,900]
+// ];
+//
+// rc.polygon(tophorizon, {
+//   fill: colors.main,
+//   fillStyle: random(["hachure"]),
+//   fillWeight: random(3 ,3),
+//   hachureAngle: random(0,90),
+//   stroke: "transparent",
+// });
+// //rect(450,0,50,1399)
+// //rect(900,0,50,1399)
+// //rect(0,450,1399,50)
+// rect(0,900,1399,50)
 
 //perspec(ppoint,1300,1300)
 
