@@ -79,6 +79,7 @@ console.log(angle,k,p)
   }
 //save('carpet.png')
 
+
 //   image(img,0,0,200,200)
 // rotate(PI/2)
 //   image(img,200,0,200,200)
