@@ -16,7 +16,7 @@ let rc;
 
 function setup() {
 //  randomSeed(1641480658028);
-  const canvas = createCanvas(800, 1200);
+  const canvas = createCanvas(3000, 1200);
   rc = rough.canvas(canvas.canvas);
   background(colors.main);
   noLoop();
@@ -52,9 +52,11 @@ print("Y="+" "+v_PointY)
 //   drawMountain(v_PointX,v_PointY,ground-k-300,k+1);
 //
 // }
+drawMountainLine()
 
-drawMountain(random(300,500),random(150,300));
-
+//drawMountain(random(300,500),random(150,300));
+//drawMountain(random(1300,1500),random(150,300));
+//drawMountain(random(2300,2500),random(150,300));
 
 // drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
 // drawBoat(v_PointX,v_PointY,ground-150,v_pointlength);
@@ -74,7 +76,7 @@ drawMountain(random(300,500),random(150,300));
  // drawGround();
 	//  drawGround();
 // d(oo)raw(al)l a bit
-//save("shanshui")
+//save("daqian")
 
 
 //  drawBuildings();

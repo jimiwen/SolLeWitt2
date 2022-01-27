@@ -1,6 +1,6 @@
 function drawMountain(X,Y){
-	 v_pointlength= random(36,36);
-  //v_pointlength= 1
+	 //v_pointlength= random(1,12);
+  v_pointlength= 1
 
 	print("ground=  "+ground)
 	for (i=0;i<v_pointlength;i++)
@@ -56,26 +56,14 @@ let bottomLclif= [
   //[X,Y],
 //  [X-random(20,150),sidestream],
 //  [X-random(20,150)-random(50,100),sidestream-random(150,300)],
-  [X,random(1000,1200)],
+  [X,random(100,400)],
   //[X-random(20,150),sidestream+random(200,200)],
 
-  [xPad-random(20,50)-cliffwidth*0.8,random(1000,1200)],
+  [xPad-random(20,50)-cliffwidth*0.8,random(100,400)],
 
 ];
 
-let bottomLcloud= [
-  [X+xPad-cliffwidth-40,offset+Y+random(12,110)],
-[1,offset+Y-random(12,30)],
-  //[X,Y],
-//  [X-random(20,150),sidestream],
-//  [X-random(20,150)-random(50,100),sidestream-random(150,300)],
-  [X-random(10,20),random(1000,1200)-random(150,250)],
-  [X-random(50,100),random(1000,1200)-random(150,150)],
-  //[X-random(20,150),sidestream+random(200,200)],
 
-
-
-];
 
 rc.polygon(mountaintop, {
   fill: colors.bg,
@@ -100,6 +88,21 @@ rc.polygon(leftclif, {
   hachureAngle: random(0.1,193),
   stroke: "transparent",
 });
+
+
+let bottomLcloud= [
+  [X+xPad-cliffwidth-40,offset+Y+random(12,110)],
+[1,offset+Y-random(12,30)],
+  //[X,Y],
+//  [X-random(20,150),sidestream],
+//  [X-random(20,150)-random(50,100),sidestream-random(150,300)],
+  [X-random(10,20),random(400,600)-random(150,250)],
+  [X-random(50,100),random(400,600)-random(150,150)],
+  //[X-random(20,150),sidestream+random(200,200)],
+
+
+
+];
 
 rc.polygon(bottomLcloud, {
   fill: random([colors.sea,colors.bg]),
@@ -170,6 +173,7 @@ let bridge= [
   [X+220,rockbottom-90]
 ];
 
+if (random(0,1)<0.3){
 rc.polygon(bridge, {
   fill: random([colors.bg,colors.body2]),
   fillStyle: random(["cross-hatch"]),
@@ -193,5 +197,6 @@ rc.circle(X+random(-400,-100),Y+random(-200,100),random(180,240), {
   hachureAngle: random(0,193),
   stroke: "transparent",
 });
+}
 
 }
