@@ -116,7 +116,7 @@ function drawSand(xx,yy){
 // 	 v_pointlength= random(2,6);
 //   //v_pointlength= 1
 //
-// 	print("ground=  "+ground)
+// 	print("ground=  "+ground)``
 // 	for (i=0;i<v_pointlength;i++)
 // 	drawGround(v_pointX,v_pointY,v_pointlength,ground,xPad)
 // 	return v_pointlength
